@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos | Hotel Pitero</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Hotel Pitero</h1>
+        <p>Nuestras habitaciones de alto riesgo</p>
+    </header>
+
+    <div class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="productos.html" class="activo">Productos</a>
+        <a href="informacion.html">Información</a>
+        <a href="contacto.html">Contacto</a>
+    </div>
+
+    <main>
+        <h2 style="text-align: center; color: #4a4e69;">Nuestras "Suites" y Servicios</h2>
+        
+      
+        <div class="contenedor-productos">
+            <article class="producto">
+                <img src="imagenes/cuarto1.jpg" alt="Cama individual con cobija de tigre">
+                <h3>Cuarto Económico</h3>
+                <p>Incluye cobija de tigre bien pesada y cama que recienta cada movimiento.</p>
+                <p class="precio">Precio: $150.00</p>
+                <label for="cantidad-1">Cantidad:</label>
+                <input type="number" id="cantidad-1" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-1">0.00</span></p>
+            </article>
+            
+            <article class="producto">
+                <img src="imagenes/cuarto2.jpg" alt="Cuarto con ventana hacia el pasillo">
+                <h3>Habitación Ventana</h3>
+                <p>La ventana da al pasillo principal para escuchar los chismes a las 3 AM.</p>
+                <p class="precio">Precio: $220.00</p>
+                <label for="cantidad-2">Cantidad:</label>
+                <input type="number" id="cantidad-2" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-2">0.00</span></p>
+            </article>
+            
+            <article class="producto">
+                <img src="imagenes/cuarto3.jpg" alt="Habitación con foco colgando">
+                <h3>Suite con Foco</h3>
+                <p>Trae un foco que sí prende, chapa en la puerta y bote como basurero.</p>
+                <p class="precio">Precio: $300.00</p>
+                <label for="cantidad-3">Cantidad:</label>
+                <input type="number" id="cantidad-3" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-3">0.00</span></p>
+            </article>
+            
+            <article class="producto">
+                <img src="imagenes/cuarto4.jpg" alt="Litera en cuarto compartido">
+                <h3>Pensión Mensual</h3>
+                <p>Litera compartida con el compa de al lado que ronca durísimo.</p>
+                <p class="precio">Precio: $800.00</p>
+                <label for="cantidad-4">Cantidad:</label>
+                <input type="number" id="cantidad-4" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-4">0.00</span></p>
+            </article>
+
+            <article class="producto">
+                <img src="imagenes/inicio.jpg" alt="Zona de hamacas improvisadas">
+                <h3>Hamaca en el Patio</h3>
+                <p>Fresquecita y al aire libre, ideal si no le temes a los zancudos.</p>
+                <p class="precio">Precio: $100.00</p>
+                <label for="cantidad-5">Cantidad:</label>
+                <input type="number" id="cantidad-5" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-5">0.00</span></p>
+            </article>
+
+            <article class="producto">
+                <img src="imagenes/logo.jpg" alt="Espacio en la azotea">
+                <h3>Espacio en Azotea</h3>
+                <p>Incluye plástico para la lluvia y vista panorámica a la barda caída.</p>
+                <p class="precio">Precio: $90.00</p>
+                <label for="cantidad-6">Cantidad:</label>
+                <input type="number" id="cantidad-6" min="0" step="1" value="0">
+                <p>Subtotal: $<span id="subtotal-6">0.00</span></p>
+            </article>
+        </div>
+
+    
+        <section class="resumen-compra">
+            <h2>Resumen de mi compra</h2>
+            <button type="button" id="calcular-compra">Calcular compra</button>
+            <p>Importe: $<span id="importe-compra">0.00</span></p>
+            <p>Descuento: $<span id="descuento-compra">0.00</span></p>
+            <p>Total a pagar: $<span id="total-compra">0.00</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Hotel Pitero - 2026. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+

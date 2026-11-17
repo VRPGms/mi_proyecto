@@ -1,0 +1,51 @@
+
+const productosCompra = [
+    { precio: 150, cantidadId: "cantidad-1", subtotalId: "subtotal-1" },
+    { precio: 220, cantidadId: "cantidad-2", subtotalId: "subtotal-2" },
+    { precio: 300, cantidadId: "cantidad-3", subtotalId: "subtotal-3" },
+    { precio: 800, cantidadId: "cantidad-4", subtotalId: "subtotal-4" },
+    { precio: 100, cantidadId: "cantidad-5", subtotalId: "subtotal-5" },
+    { precio: 90,  cantidadId: "cantidad-6", subtotalId: "subtotal-6" }
+];
+
+function calcularCompra() {
+    let total = 0;
+    
+    for (const producto of productosCompra) {
+        const campo = document.getElementById(producto.cantidadId);
+        const cantidad = Number(campo.value);
+
+        if (campo.value.trim() === "" || !Number.isInteger(cantidad) || cantidad < 0) {
+            alert("Escribe cantidades enteras iguales o mayores que cero.");
+            campo.focus();
+            return null;
+        }
+
+        const subtotal = producto.precio * cantidad;
+        document.getElementById(producto.subtotalId).textContent = subtotal.toFixed(2);
+        total += subtotal;
+    }
+    
+    return total;
+}
+
+document.getElementById("calcular-compra").addEventListener("click", () => {
+    const importe = calcularCompra();
+    if (importe == null) return;
+
+    let descuento = 0;
+    if (importe >= 1000) {
+        descuento = importe * 0.10;
+    } else {
+        descuento = 0;
+    }
+
+    const totalPagar = importe - descuento;
+
+    document.getElementById("importe-compra").textContent = importe.toFixed(2);
+    document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
+    document.getElementById("total-compra").textContent = totalPagar.toFixed(2);
+});
+
+
+
