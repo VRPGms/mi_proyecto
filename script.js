@@ -1,4 +1,5 @@
 
+
 const productosCompra = [
     { precio: 150, cantidadId: "cantidad-1", subtotalId: "subtotal-1" },
     { precio: 220, cantidadId: "cantidad-2", subtotalId: "subtotal-2" },
@@ -7,6 +8,27 @@ const productosCompra = [
     { precio: 100, cantidadId: "cantidad-5", subtotalId: "subtotal-5" },
     { precio: 90,  cantidadId: "cantidad-6", subtotalId: "subtotal-6" }
 ];
+
+
+function claveCantidad(producto) {
+    return "mi-negocio:" + location.pathname + ":" + producto.cantidadId;
+}
+
+
+function activarGuardadoPedido() {
+    for (const producto of productosCompra) {
+        const campo = document.getElementById(producto.cantidadId);
+        campo.addEventListener("input", () => {
+            const clave = claveCantidad(producto);
+            if (campo.value === "" || !campo.validity.valid) {
+                localStorage.removeItem(clave);
+                return;
+            }
+            localStorage.setItem(clave, campo.value);
+        });
+    }
+}
+
 
 function calcularCompra() {
     let total = 0;
@@ -29,9 +51,9 @@ function calcularCompra() {
     return total;
 }
 
-document.getElementById("calcular-compra").addEventListener("click", () => {
+function actualizarResumenCompra() {
     const importe = calcularCompra();
-    if (importe == null) return;
+    if (importe === null) return;
 
     let descuento = 0;
     if (importe >= 1000) {
@@ -45,7 +67,41 @@ document.getElementById("calcular-compra").addEventListener("click", () => {
     document.getElementById("importe-compra").textContent = importe.toFixed(2);
     document.getElementById("descuento-compra").textContent = descuento.toFixed(2);
     document.getElementById("total-compra").textContent = totalPagar.toFixed(2);
-});
+}
 
 
+function recuperarPedido() {
+    for (const producto of productosCompra) {
+        const campo = document.getElementById(producto.cantidadId);
+        const guardada = localStorage.getItem(claveCantidad(producto));
+        campo.value = guardada ?? "0";
+        if (campo.value === "" || !campo.validity.valid) {
+            campo.value = "0";
+        }
+    }
+    calcularCompra();
+    actualizarResumenCompra();
+}
+
+
+function vaciarPedido() {
+    for (const producto of productosCompra) {
+        localStorage.removeItem(claveCantidad(producto));
+    }
+    recuperarPedido();
+}
+
+
+const botonCalcularPedido = document.getElementById("calcular-compra");
+const botonVaciarPedido = document.getElementById("vaciar-pedido");
+
+if (botonCalcularPedido) {
+    botonCalcularPedido.addEventListener("click", actualizarResumenCompra);
+    activarGuardadoPedido();
+    recuperarPedido();
+}
+
+if (botonVaciarPedido) {
+    botonVaciarPedido.addEventListener("click", vaciarPedido);
+}
 
